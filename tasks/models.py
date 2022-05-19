@@ -7,4 +7,4 @@ class Task(models.Model):
     progress = models.IntegerField(default=0)
     
     def __str__(self):
-        return self.task_text
+        return self.desciption

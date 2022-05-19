@@ -35,7 +35,7 @@
             <td>{{task.task_text}}</td>
             <td>01.01.2023</td>
             <td>{{task.progress}}%</td>
-            <td><a class="btn btn-primary" href="{% url 'edit' task_id=task.id  %}" role="button">Bearbeiten</a></td>
+            <td><a class="btn btn-primary" href="{% url 'edit' id=task.id  %}" role="button">Bearbeiten</a></td>
             <td><button type="button" class="btn btn-primary">löschen</button></td>
           </tr>
             {% endfor %}
