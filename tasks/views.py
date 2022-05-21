@@ -28,7 +28,10 @@ def edit(request, id):
         # return render(request, 'edit.html', {'task': task})
         return index(request)
     elif request.method == 'GET':
-        return render(request, 'edit.html', {'task': task})
+        context = {'task': task}
+        date = task.deadline.strftime('%Y-%m-%d')
+        context['date'] = date
+        return render(request, 'edit.html', context)
 
 
 def imprint(request):
