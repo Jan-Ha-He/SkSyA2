@@ -49,6 +49,8 @@ def add(request):
         task = Task.objects.create(task_text=request.POST.get(
             "description"), deadline=request.POST.get("deadline"), progress=request.POST.get("progress"))
         task.save()
-        return index(request)
+        list_of_tasks= Task.objects.all()
+        context = {'list_of_tasks':list_of_tasks}
+        return render(request, 'index.html', context)
     elif request.method == 'GET':
         return render(request, 'add.html')
