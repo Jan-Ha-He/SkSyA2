@@ -10,10 +10,14 @@ from .models import Task
 
 # Create your views here.
 def index(request):
-    list_of_tasks = Task.objects.all()
-    context = {'list_of_tasks': list_of_tasks}
+    if request.method == 'POST':
+        Task.objects.get(id=request.POST['deleteId']).delete()
+        list_of_tasks= Task.objects.all()
+        context = {'list_of_tasks':list_of_tasks}
+    if request.method == 'GET':
+        list_of_tasks= Task.objects.all()
+        context = {'list_of_tasks':list_of_tasks}
     return render(request, 'index.html', context)
-
 
 def edit(request, id):
     try:
