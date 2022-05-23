@@ -36,7 +36,12 @@
             <td>{{task.deadline}}</td>
             <td>{{task.progress}}%</td>
             <td><a class="btn btn-primary" href="{% url 'edit' id=task.id  %}" role="button">Bearbeiten</a></td>
-            <td><button type="button" class="btn btn-primary" >Löschen</button></td>
+            <td>
+              <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary" name="deleteId" value={{task.id}}>Löschen</button>
+              </form>
+              </td>
           </tr>
             {% endfor %}
             {% endif %}
