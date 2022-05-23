@@ -11,7 +11,8 @@ from .models import Task
 # Create your views here.
 def index(request):
     if request.method == 'POST':
-        Task.objects.get(id=request.POST['deleteId']).delete()
+        #Task.objects.get(id=request.POST['deleteId']).delete()
+        Task.objects.get(id=request.POST.get('deleteId')).delete()
         list_of_tasks= Task.objects.all()
         context = {'list_of_tasks':list_of_tasks}
     if request.method == 'GET':
@@ -29,8 +30,9 @@ def edit(request, id):
         task.deadline = request.POST.get("deadline")
         task.progress = request.POST.get("progress")
         task.save()
-        # return render(request, 'edit.html', {'task': task})
-        return index(request)
+        list_of_tasks= Task.objects.all()
+        context = {'list_of_tasks':list_of_tasks}
+        return render(request, 'index.html', context)
     elif request.method == 'GET':
         context = {'task': task}
         date = task.deadline.strftime('%Y-%m-%d')
